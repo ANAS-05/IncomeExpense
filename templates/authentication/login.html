@@ -1,0 +1,72 @@
+{% extends 'base_auth.html' %}
+{% load static %}
+
+{% block content %}
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+      <div class="card shadow border-0 rounded-4">
+        <div class="card-body p-4 p-md-5">
+          <h3 class="fw-bold mb-4 text-center">Login to your account</h3>
+          <form action="{% url 'login' %}" method="post">
+            {% csrf_token %}
+            
+            {% include 'partials/_messages.html' %}
+            
+            <div class="form-floating mb-3">
+              <input 
+                type="text"
+                name="username"
+                class="form-control"
+                id="usernameField"
+                placeholder="Username"
+                value="{{fieldValues.username}}"
+                autocomplete="username"
+              >
+              <label for="usernameField">Username</label>
+            </div>
+            
+            <div class="form-floating mb-4 position-relative">
+              <input
+                type="password"
+                name="password"
+                class="form-control"
+                id="passwordField"
+                placeholder="Password"
+                autocomplete="current-password"
+                >
+              
+              <label for="passwordField">Password</label>
+              <i class="fas fa-eye position-absolute top-50 end-0 translate-middle-y me-3" id="showPasswordToggle" style="cursor: pointer;"></i>
+            </div>
+            
+            <div class="d-grid">
+              <button type="submit" class="btn btn-primary btn-lg">
+                <span class="fw-semibold">Login</span>
+              </button>
+            </div>
+            
+            <div class="text-center mt-4">
+              <p class="mb-3 text-muted">
+                Don't have an account? 
+                <a href="{% url 'register' %}" class="text-primary fw-semibold text-decoration-none">Sign Up</a>
+              </p>
+              
+              <p class="mb-0 text-muted">
+                Forgot Password? 
+                <a href="{% url 'request-password' %}" class="text-primary fw-semibold text-decoration-none">Reset it</a>
+              </p>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="{% static 'js/register.js' %}"></script>
+
+{% endblock content %}

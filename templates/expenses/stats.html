@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="container mt-2">
+  <div class="row mb-2">
+      <div class="col-md-10">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="">Expense Summary</a>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">
+                Summary
+            </li>
+            </ol>
+        </nav>
+      </div>
+    </div>
+</div>
+    <div style="height: 700px; width: 700px; margin-left: 20%;" >
+        <canvas id="myChart" style="max-width: 100%; max-height: 100%;">
+            
+        </canvas>
+        
+    </div>
+      
+
+<script src="{% static "js/stats.js" %}"></script>
+
+{% endblock content %}
+

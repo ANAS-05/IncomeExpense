@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="container mt-2">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          <a href="{% url 'expenses' %}">Expenses</a>
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">Add Expenses</li>
+      </ol>
+    </nav>
+
+    <div class="card">
+      <div class="card-body">
+        <form action="{% url 'add-expense' %}" method="post">
+          {% csrf_token %}
+
+          {% include 'partials/_messages.html' %}
+
+          <div class="d-flex flex-column">
+            <div class="form-group mb-2">
+              <label for="amount">Amount</label>
+              <input type="number" step="0.001" class="form-control form-control-sm mt-1" name="amount" value="{{ values.amount }}" />
+            </div>
+            <div class="form-group mb-2">
+              <label for="description">Description</label>
+              <input type="text" class="form-control form-control-sm mt-1 control-label" name="description" value="{{ values.description }}" />
+            </div>
+            <div class="form-group mb-2">
+              <label for="category">Category</label>
+              <select name="category" class="form-control form-control-sm mt-1">
+                <option value="" selected>Choose...</option>
+                {% for category in categories %}
+                  <option value="{{ category.name }}">{{ category.name }}</option>
+                {% endfor %}
+              </select>
+            </div>
+            <div class="form-group mb-2">
+              <label for="expense_date">Date of Expense</label>
+              <input type="date" class="form-control form-control-sm mt-1" name="expense_date" value="{{ values.expense_date }}" />
+            </div>
+
+            <input type="submit" value="Submit" class="btn btn-outline-primary mt-3" />
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock %}

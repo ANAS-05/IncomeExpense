@@ -1,0 +1,23 @@
+# Django-related
+*.log
+*.pot
+*.pyc
+__pycache__/
+
+
+# Environments
+.env
+.venv/
+venv/
+ENV/
+env/
+
+# IDEs and Editors
+.vscode/
+.idea/
+*.swp
+
+
+# Operating system files
+.DS_Store
+Thumbs.db
