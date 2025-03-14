@@ -115,6 +115,7 @@ class RegistrationView(View):
                 #Send email using Thread
                 EmailThread(email).start()
 
+
                 messages.success(request, 'Account successfully created')
                 return render(request, 'authentication/register.html')
 
@@ -225,8 +226,11 @@ class RequestPasswordResetEmail(View):
                 [email],
             )
 
-            #Send email using thread
-            EmailThread(email).start()
+            # #Send email using thread
+            # EmailThread(email).start()
+            
+            email.send(fail_silently=False)
+
         
         messages.success(request, "If the email exists in our system, a password reset link has been sent to your inbox.")
         return render(request,'authentication/reset-password.html',context=context)
